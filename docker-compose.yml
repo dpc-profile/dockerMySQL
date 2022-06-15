@@ -1,27 +1,36 @@
-version: '3'
-
 services:
   db:
     container_name: my_custon_sql
     image: mysql:8
     restart: always
     environment:
-      MYSQL_DATABASE: 'db'
-      # So you don't have to use root, but you can if you like
-      MYSQL_USER: 'daniel'
-      # You can use whatever password you like
-      MYSQL_PASSWORD: 'daniel'
-      # Password for root access
-      MYSQL_ROOT_PASSWORD: 'linux123'
-    ports:
-      # <Port exposed> : < MySQL Port running inside container>
+      MYSQL_DATABASE: 'db'      
+      MYSQL_USER: 'daniel' # So you don't have to use root, but you can if you like      
+      MYSQL_PASSWORD: 'daniel' # You can use whatever password you like      
+      MYSQL_ROOT_PASSWORD: 'linux123' # Password for root access
+
+    # <Port exposed> : < MySQL Port running inside container>
+    ports:       
       - '3306:3306'
     expose:
       # Opens port 3306 on the container
       - '3306'
-      # Where our data will be persisted
+    # Where our data will be persisted
     volumes:
       - ./database:/var/lib/mysql
+
+  myAdmin:
+    container_name: php_my_admin
+    image: phpmyadmin:5.2.0
+    restart: always
+    links:
+      - db
+    environment:
+      PMA_HOST: 'db'
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    ports:
+      - 8081:80
 
 # Names our volume
 volumes:

@@ -5,8 +5,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: 'linux123' # Password for root access
       #MYSQL_DATABASE: 'db' #Cria um database      
-      #MYSQL_USER: 'daniel' # So you don't have to use root, but you can if you like      
-      #MYSQL_PASSWORD: 'daniel' # You can use whatever password you like      
+      #MYSQL_USER: 'user' # So you don't have to use root, but you can if you like      
+      #MYSQL_PASSWORD: 'passUser' # You can use whatever password you like      
 
     # <Port exposed> : < MySQL Port running inside container>
     ports:       

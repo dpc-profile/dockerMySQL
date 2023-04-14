@@ -12,10 +12,14 @@ docker compose down
 ```
 ___
 
-
 ## Usando o phpMyAdmin
 
-Servidor = O nome do serviço lá no compose
+Para acessar a pagina do phpMyAdmin
+```sh
+http://localhost:8081/
+```
+
+- Servidor = O nome do serviço lá no compose
 ___
 
 ## Sobre o volume

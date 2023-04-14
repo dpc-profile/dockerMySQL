@@ -1,7 +1,6 @@
 version: '3.9'
 
 services:
-  #This is the server name
   mysql_db:
     container_name: mysql_custom
     image: mysql:8
@@ -10,8 +9,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: 'superPass' # Password for root access
       MYSQL_DATABASE: 'db' #Database name
-      MYSQL_USER: 'user' # So you don't have to use root, but you can if you like      
-      MYSQL_PASSWORD: 'passUser' # You can use whatever password you like      
+      MYSQL_USER: 'user' # So you don't have to use root
+      MYSQL_PASSWORD: 'passUser'      
 
     # <Port exposed>:<MySQL Port running inside container>
     ports:       
@@ -32,6 +31,5 @@ services:
       - mysql_db
 
 #To use volumes instead folder inside the project root
-#The name of the volume will be: <projectName>_<volumeName>
 volumes:
   mysql-data:

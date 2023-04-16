@@ -4,6 +4,8 @@ services:
   mysql_db:
     container_name: mysql_custom
     image: mysql:8
+    networks:
+      - db-bridge
     volumes:
       - mysql-data:/var/lib/mysql
     environment:
@@ -18,11 +20,13 @@ services:
   
   myAdmin:
     container_name: php_my_admin
-    image: phpmyadmin:5.2.0
+    image: phpmyadmin:5.2.1
+    networks:
+      - db-bridge
     links:
       - mysql_db
     environment:
-      PMA_HOST: 'db'
+      PMA_HOST: 'mysql_db'
       PMA_PORT: 3306
       PMA_ARBITRARY: 1
     ports:
@@ -33,3 +37,7 @@ services:
 #To use volumes instead folder inside the project root
 volumes:
   mysql-data:
+ 
+networks:
+  db-bridge:
+    driver: bridge
